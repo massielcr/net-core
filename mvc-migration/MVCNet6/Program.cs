@@ -1,4 +1,6 @@
+using System;
 using MVCNet6.Handlers;
+using MVCNet6.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,7 @@ app.MapWhen(
         appBranch.UseSampleHandler();
     });
 
+app.UseRedirectConfiguration();
 
 app.MapControllerRoute(
     name: "default",
