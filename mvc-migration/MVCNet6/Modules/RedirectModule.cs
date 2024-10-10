@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.Extensions;
-using MVCNet6.Configurations;
+using MVCNet8.Configurations;
 
-namespace MVCNet6.Modules
+namespace MVCNet8.Modules
 {
     public class RedirectConfiguration
     {

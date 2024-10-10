@@ -1,4 +1,4 @@
-﻿namespace MVCNet6.Handlers
+﻿namespace MVCNet8.Handlers
 {
     public class SampleHandler
     {

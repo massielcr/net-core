@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC5", "MVC5\MVC5.csproj", "{377B772C-39F3-488A-AB05-3C86E9CF7D9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCNet6", "MVCNet6\MVCNet6.csproj", "{C3FC017E-E44A-4E1A-A4BC-6A1C43576F28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCNet8", "MVCNet6\MVCNet8.csproj", "{C3FC017E-E44A-4E1A-A4BC-6A1C43576F28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MVCNet6.Models;
+using MVCNet8.Models;
 using System.Diagnostics;
 
-namespace MVCNet6.Controllers
+namespace MVCNet8.Controllers
 {
     public class HomeController : Controller
     {

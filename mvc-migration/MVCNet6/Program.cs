@@ -1,6 +1,6 @@
 using System;
-using MVCNet6.Handlers;
-using MVCNet6.Modules;
+using MVCNet8.Handlers;
+using MVCNet8.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-namespace MVCNet6.Models
+namespace MVCNet8.Models
 {
     public class ErrorViewModel
     {
