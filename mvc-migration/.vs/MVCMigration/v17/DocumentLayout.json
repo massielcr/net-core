@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\MData\\github\\net-core\\mvc-migration\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{377B772C-39F3-488A-AB05-3C86E9CF7D9D}|MVC5\\MVC5.csproj|c:\\mdata\\github\\net-core\\mvc-migration\\mvc5\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{377B772C-39F3-488A-AB05-3C86E9CF7D9D}|MVC5\\MVC5.csproj|solutionrelative:mvc5\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\MData\\github\\net-core\\mvc-migration\\MVC5\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MVC5\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\MData\\github\\net-core\\mvc-migration\\MVC5\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MVC5\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-08T02:04:04.263Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
