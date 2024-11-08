@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\MVCNet6.props" />
-</Project>

@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\MVCNet8.props" />
-</Project>
