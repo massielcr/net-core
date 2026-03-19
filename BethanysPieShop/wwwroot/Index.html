@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Search</title>
+</head>
+<body>
+    <label for="SearchInput">Search:</label>
+    <input id="SearchInput" type="text" name="SearchInput" value="" />
+    <button id="SearchButton" type="submit">Submit</button>
+
+    <br /><br/>
+
+    <table id="tblPies">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const searchButton = document.getElementById('SearchButton');
+            const searchInput = document.getElementById('SearchInput');
+            const tableBody = document.querySelector('#tblPies tbody');
+
+
+
+            searchButton.addEventListener('click', async function (event) {
+                event.preventDefault();
+
+                const searchQuery = searchInput.value.trim();
+                tableBody.innerHTML = ''; // Clear previous results
+
+                if (!searchQuery) {
+                    alert('Please enter a search query.');
+                    return;
+                }
+
+                try {
+                    const response = await fetch("api/search", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ SearchQuery: searchQuery })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const pies = await response.json();
+
+                    if (!pies.length) {
+                        tableBody.innerHTML = '<tr><td colspan="2">No results found.</td></tr>';
+                    }
+
+                    pies.forEach(pie => {
+                        const row = document.createElement('tr');
+                        const nameCell = document.createElement('td');
+                        const priceCell = document.createElement('td');
+                        nameCell.textContent = pie.name;
+                        priceCell.textContent = `$${pie.price.toFixed(2)}`;
+                        row.appendChild(nameCell);
+                        row.appendChild(priceCell);
+                        tableBody.appendChild(row);
+                    });
+                }
+                catch (error) {
+                    console.error('Error fetching search results:');
+                    alert('An error occurred while fetching search results. Please try again later.');
+                }
+
+            });
+        });
+
+    </script>
+</body>
+</html>

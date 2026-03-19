@@ -1,0 +1,6 @@
+@BethanysPieShop_HostAddress = http://localhost:5047
+
+GET {{BethanysPieShop_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
