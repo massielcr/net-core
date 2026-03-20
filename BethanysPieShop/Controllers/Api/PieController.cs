@@ -49,6 +49,7 @@ namespace BethanysPieShop.Controllers.Api
             return CreatedAtAction(nameof(GetById), new { id = pie.PieId }, pie);
         }
 
+        [HttpPut("{id}")]
         public IActionResult UpdatePie(int id, Pie pie)
         {
             if (id != pie.PieId)
