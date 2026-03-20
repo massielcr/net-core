@@ -64,7 +64,7 @@ void Configure(WebApplication app, IWebHostEnvironment webHostEnvironment)
 
 
 
-    app.MapGet("api/minimal/search", (IPieRepository pieRepository) => {
+    app.MapGet("api/minimal/pie", (IPieRepository pieRepository) => {
         var pies = pieRepository.GetAll().ToList();
         return Results.Ok(pies);
     });

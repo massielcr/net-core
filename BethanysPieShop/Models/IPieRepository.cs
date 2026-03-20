@@ -12,5 +12,6 @@
         void CreatePie(Pie pie);
 
         void UpdatePie(Pie pie);
+        void DeletePie(int id);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace BethanysPieShop.Models
+﻿namespace BethanysPieShop.ViewModels
 {
     public class SearchRequest
     {

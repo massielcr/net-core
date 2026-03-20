@@ -44,5 +44,14 @@ namespace BethanysPieShop.Models
             _appDbContext.Pies.Update(pie);
             _appDbContext.SaveChanges();
         }
+
+        public void DeletePie(int id)
+        {
+            var pie = GetById(id);
+            if (pie == null)
+            {
+                _appDbContext.Pies.Remove(pie);
+            }
+        }
     }
 }
