@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>File Uploader</title>
+
+    <style>
+        ul {
+            list-style-type: none;
+        }
+        fieldset{
+            width : 20%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>File Uploader</h1>
+    </header>
+    <main>
+
+        <form id="todoForm">
+            <label for="Name">File Name:</label>
+            <input type="text" id="Name" name="Name" />
+
+            <br><br>
+
+            <fieldset>
+                <legend>Select Notification Preferences</legend>
+                <ul>
+                    <li>
+                        <input type="checkbox" id="email-notify" value="1" name="NotificationPreferences" />
+                        <label for="email-notify">Email</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="sms-notify" value="2" name="NotificationPreferences" />
+                        <label for="sms-notify">SMS</label>
+                    </li>
+                </ul>
+            </fieldset>
+
+            <br><br>
+
+            <label for="Files">Choose a profile picture:</label>
+            <input type="file" id="Files" name="Files" accept="image/png, image/jpeg" />
+
+            <br><br>
+
+            <button id="save-preferences" type="submit">Save Preferences</button>
+        </form>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Company Name</p>
+    </footer>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const todoForm = document.getElementById('todoForm');
+
+            todoForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const fileInput = document.getElementById('File');
+                const formData = new FormData(event.target);
+
+                try {
+                    const response = await fetch("/api/file/upload", {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if (response.ok) {
+                        const fileName = response.headers.get('X-File-Name');
+
+                        const blob = await response.blob();
+
+                        const url = window.URL.createObjectURL(blob);
+
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = fileName;
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                    }
+                    else {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                }
+                catch (error) {
+                    console.error('Error fetching search results:', error);
+                    alert('An error occurred while fetching search results. Please try again later.');
+                }
+
+            });
+        });
+
+    </script>
+</body>
+</html>

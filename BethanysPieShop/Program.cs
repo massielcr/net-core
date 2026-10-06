@@ -1,4 +1,12 @@
 using BethanysPieShop.Models;
+using BethanysPieShop.Services;
+using BethanysPieShop.Services.Notifications;
+using BethanysPieShop.Services.Notifications.BackgroundQueue;
+using BethanysPieShop.Services.Notifications.Email;
+using BethanysPieShop.Services.Notifications.SMS;
+using BethanysPieShop.Services.Storages;
+using BethanysPieShop.Services.Validator;
+using BethanysPieShop.Services.Validator.Rules;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -35,8 +43,60 @@ void ConfigureServices(IServiceCollection services)
     services.AddDbContext<AppDbContext>(options =>
                                          options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
 
-    services.AddTransient<IPieRepository, PieRepository>();
-    services.AddTransient<ICategoryRepository, CategoryRepository>();
+    services.AddScoped<IPieRepository, PieRepository>();
+    services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+
+
+    #region File Uploader Validator
+    // Validation Rules
+    builder.Services.AddTransient<IFileValidationRule, NullFileValidationRule>();
+    builder.Services.AddTransient<IFileValidationRule, MaxFileSizeValidationRule>();
+    builder.Services.AddTransient<IFileValidationRule, FileExtensionValidationRule>();
+    builder.Services.AddTransient<IFileValidationRule, FileMimeTypeValidationRule>();
+
+    builder.Services.AddTransient<IFileValidator, FileValidator>();
+
+    builder.Services.AddTransient<FileValidatorBuilder>();
+
+    #endregion
+
+
+    #region File Uploader Notification Services
+
+    // 1. Settings & Infrastructure
+    builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+    builder.Services.AddTransient<IEmailSender, EmailSender>();
+    builder.Services.AddTransient<ISMSSender, SMSSender>();
+
+    // 2. The Background Queue (Must be Singleton)
+    // This allows the API to "hand off" work to the background worker.
+    builder.Services.AddSingleton<INotificationQueue, NotificationQueue>();
+
+    // 3. Register ALL Observers under the same interface
+    // The DI container will gather these into an IEnumerable<INotificationObserver>.
+    builder.Services.AddTransient<INotificationObserver, EmailNotificationObserver>();
+    builder.Services.AddTransient<INotificationObserver, SMSNotificationObserver>();
+
+    // 4. Register the Observable (Subject)
+    // It will automatically receive the list of observers via its constructor.
+    builder.Services.AddTransient<INotificationObservable, NotificationObservable>();
+
+    // 5. Register the Background Service (The Worker)
+    // This class runs for the entire lifetime of the app, watching the queue.
+    builder.Services.AddHostedService<NotificationWorker>();
+       
+    services.AddTransient<FileNotificationProcessor>();
+
+    #endregion
+
+    
+
+
+    services.AddTransient<FileValidatorProcessor>();
+    services.AddTransient<FileStorageProcessor>();
+    services.AddTransient<FileProcessorBuilder>();
+    services.AddTransient<IFileStorageService, EFFileStorageService>();
 }
 
 // Configure the HTTP request pipeline.
