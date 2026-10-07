@@ -60,7 +60,7 @@ namespace PSGettingStartedSW.DataContext
                     new
                     {
                         Id = 4,
-                        Title = "Pulp",
+                        Title = "Pulp Fiction",
                         Year = 1994,
                         Length = 154,
                         RatingScore = 8.8,

@@ -21,5 +21,13 @@ var context = app.Services.GetRequiredService<FilmDbContext>();
 
 context.Database.EnsureCreated();
 
+var qry = context.Films
+                 .Where(f => f.Mpaa == "R")
+                 .OrderByDescending(f => f.Year)
+                 .Select(f => f.Title);
+
+Console.WriteLine($"Titles: {string.Join(", ", qry.ToArray())}");
+
+
 
 Console.ReadLine();
