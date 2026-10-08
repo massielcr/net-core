@@ -53,5 +53,26 @@ namespace PSGettingStartedSWWeb.Controllers
 
             return BadRequest();
         }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateFilm(int id, Film model)
+        {
+            ArgumentNullException.ThrowIfNull(model);
+
+            Film? existingFilm = await filmDbContext.Films.Include(f => f.Actors).Where(f => f.Id == id).FirstOrDefaultAsync();
+
+            if (existingFilm is null)
+            {
+                return NotFound();
+            }
+
+            existingFilm.Title = model.Title;
+            existingFilm.Year = model.Year;
+            existingFilm.Length = model.Length;
+            existingFilm.RatingScore = model.RatingScore;
+            existingFilm.Mpaa = model.Mpaa;
+
+            return await filmDbContext.SaveChangesAsync() > 0 ? Ok(existingFilm) : BadRequest();
+        }
     }
 }

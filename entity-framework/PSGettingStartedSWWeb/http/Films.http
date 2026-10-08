@@ -33,3 +33,24 @@ Content-Type: application/json
         }
     ]
 }
+
+###Update Film
+PUT {{host}}/films/9
+Content-Type: application/json
+
+{
+    "Title" : "The Godfather Part II",
+    "Year" : 1974,
+    "Length" : 202,
+    "RatingScore" : 9.2,
+    "Mpaa" : "R",
+    "Actors" : [
+        {
+            "FirstName" : "Al",
+            "LastName" : "Pacino",
+            "Age" : 83,
+            "Gender" : 1,
+            "ImbLink" : "https://www.imdb.com/name/nm0000199/"
+        }
+    ]
+}
