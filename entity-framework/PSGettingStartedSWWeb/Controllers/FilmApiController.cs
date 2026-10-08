@@ -35,6 +35,23 @@ namespace PSGettingStartedSWWeb.Controllers
             return Ok(film);
         }
 
+        [HttpPost("")]
+        public async Task<IActionResult> CreateFilm(Film model)
+        {
+            ArgumentNullException.ThrowIfNull(model);
 
+            foreach(Actor actor in model.Actors)
+            {
+                filmDbContext.Actors.Add(actor);
+            }
+            filmDbContext.Films.Add(model);
+
+            if (await filmDbContext.SaveChangesAsync() > 0)
+            {
+                return CreatedAtRoute("GetFilm", new { Id = model.Id }, model );
+            }
+
+            return BadRequest();
+        }
     }
 }
