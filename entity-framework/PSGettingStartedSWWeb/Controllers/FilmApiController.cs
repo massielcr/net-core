@@ -74,5 +74,21 @@ namespace PSGettingStartedSWWeb.Controllers
 
             return await filmDbContext.SaveChangesAsync() > 0 ? Ok(existingFilm) : BadRequest();
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteFilm(int id)
+        {
+            Film? film = await filmDbContext.Films.Include(f => f.Actors).Where(f => f.Id == id).FirstOrDefaultAsync();
+
+            if (film is null)
+            {
+                return NotFound();
+            }
+
+            filmDbContext.Films.Remove(film);
+            filmDbContext.Actors.RemoveRange(film.Actors);
+
+            return await filmDbContext.SaveChangesAsync() > 0 ? Ok() : BadRequest();
+        }
     }
 }

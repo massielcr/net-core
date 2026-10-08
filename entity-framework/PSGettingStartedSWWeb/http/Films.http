@@ -54,3 +54,7 @@ Content-Type: application/json
         }
     ]
 }
+
+
+###Delete Film
+DELETE {{host}}/films/10
