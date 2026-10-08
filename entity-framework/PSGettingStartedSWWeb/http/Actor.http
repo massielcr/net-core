@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ###Update Actor
-PUT {{host}}/films/3/actors
+PUT {{host}}/actors/23
 Content-Type: application/json
 
 {
@@ -32,4 +32,4 @@ Content-Type: application/json
 }
 
 ###Create Actor
-DELETE {{host}}/films/3/actors
+DELETE {{host}}/actors/23

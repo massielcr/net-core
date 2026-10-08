@@ -18,6 +18,6 @@ namespace PSGettingStartedSWWeb.Entities
 
         public string? Mpaa { get; set; }
 
-        public IEnumerable<Actor> Actors { get; set; } = new List<Actor>();
+        public ICollection<Actor> Actors { get; set; } = new List<Actor>();
     }
 }
