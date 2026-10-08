@@ -18,6 +18,6 @@ namespace PSGettingStartedSW.Entities
 
         public string? Mpaa { get; set; }
 
-        public IEnumerable<Actor> Actors { get; set; } = [];
+        public IEnumerable<Actor> Actors { get; set; } = new List<Actor>();
     }
 }

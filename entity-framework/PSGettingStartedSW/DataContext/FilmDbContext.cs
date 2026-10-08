@@ -1,5 +1,4 @@
-﻿using Azure;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using PSGettingStartedSW.Entities;
 using PSGettingStartedSW.Enums;
@@ -20,6 +19,8 @@ namespace PSGettingStartedSW.DataContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string? configurationString = _configuration.GetConnectionString("FilmDb");
+
+            //optionsBuilder.LogTo(Console.WriteLine);
 
             optionsBuilder.UseSqlServer(configurationString);
         }
