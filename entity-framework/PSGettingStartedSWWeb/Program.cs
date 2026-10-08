@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using PSGettingStartedSWWeb.DataContext;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<FilmDbContext>(options =>
+{
+    string? configurationString = builder.Configuration.GetConnectionString("FilmDbWeb");
+
+    options.UseSqlServer(configurationString);
+});
 
 var app = builder.Build();
 

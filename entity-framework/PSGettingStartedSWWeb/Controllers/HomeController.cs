@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PSGettingStartedSWWeb.DataContext;
+using PSGettingStartedSWWeb.Entities;
 using PSGettingStartedSWWeb.Models;
 using System.Diagnostics;
 
@@ -6,9 +9,18 @@ namespace PSGettingStartedSWWeb.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private FilmDbContext _filmDbContext;
+
+        public HomeController(FilmDbContext filmDbContext)
         {
-            return View();
+            _filmDbContext = filmDbContext;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            IEnumerable<Film> films = await _filmDbContext.Films.OrderBy(f => f.RatingScore).Select(f => f).ToListAsync();
+
+            return View(films);
         }
 
         public IActionResult Privacy()
