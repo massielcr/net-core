@@ -1,0 +1,35 @@
+@host = https://localhost:7097/api
+
+###Get Actors
+GET {{host}}/films/3/actors
+
+###Get Actor
+GET {{host}}/films/3/actors/5
+
+
+###Create Actor
+POST {{host}}/films/3/actors
+Content-Type: application/json
+
+{
+  "FirstName" : "Diane",
+  "LastName" : "Keaton",
+  "Age" : 90,
+  "Gender" : 0,
+  "ImbLink" : "https://www.imdb.com/name/nm0000473/"
+}
+
+###Update Actor
+PUT {{host}}/films/3/actors
+Content-Type: application/json
+
+{
+  "FirstName" : "Diane",
+  "LastName" : "Keaton",
+  "Age" : 91,
+  "Gender" : 0,
+  "ImbLink" : "https://www.imdb.com/name/nm0000473/"
+}
+
+###Create Actor
+DELETE {{host}}/films/3/actors

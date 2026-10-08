@@ -58,7 +58,3 @@ Content-Type: application/json
 
 ###Delete Film
 DELETE {{host}}/films/10
-
-
-###Get Actors
-GET {{host}}/films/3/actors

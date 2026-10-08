@@ -37,6 +37,7 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 
-app.MapGetActors();
+app.MapActorEndpoints();
+
 
 app.Run();
