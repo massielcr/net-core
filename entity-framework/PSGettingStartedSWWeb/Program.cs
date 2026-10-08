@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PSGettingStartedSWWeb.Controllers;
 using PSGettingStartedSWWeb.DataContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,5 +36,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+
+app.MapGetActors();
 
 app.Run();
