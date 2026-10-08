@@ -1,0 +1,8 @@
+@host = https://localhost:7097
+
+### Get Films
+GET {{host}}/api/films
+
+### Get Film
+GET {{host}}/api/films/3
+
