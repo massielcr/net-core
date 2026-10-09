@@ -1,4 +1,4 @@
-﻿namespace PSGettingStartedSW.Enums
+﻿namespace PSGettingStartedSW.Console.Enums
 {
     public enum Gender
     {

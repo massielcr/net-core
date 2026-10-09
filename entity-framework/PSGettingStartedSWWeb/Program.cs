@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using PSGettingStartedSWWeb.Controllers;
-using PSGettingStartedSWWeb.DataContext;
+using PSGettingStartedSW.Web.Controllers;
+using PSGettingStartedSW.Web.DataContext;
 
 var builder = WebApplication.CreateBuilder(args);
 

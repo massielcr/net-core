@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net10.0</TargetFramework>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="NUnit" Version="4.1.0" />
+	<PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+	<PackageReference Include="Testcontainers.MsSql" Version="4.16.0" />
+	<PackageReference Include="FluentAssertions" Version="6.12.2" />
+	<PackageReference Include="Moq" Version="4.20.70" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\PSGettingStartedSWWeb\PSGettingStartedSW.Web.csproj" />
+  </ItemGroup>
+
+</Project>

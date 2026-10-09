@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PSGettingStartedSWWeb.Entities;
-using PSGettingStartedSWWeb.Enums;
+using PSGettingStartedSW.Web.Entities;
+using PSGettingStartedSW.Web.Enums;
 
-namespace PSGettingStartedSWWeb.DataContext
+namespace PSGettingStartedSW.Web.DataContext
 {
     public class FilmDbContext : DbContext
     {
@@ -65,7 +65,7 @@ namespace PSGettingStartedSWWeb.DataContext
                         FirstName = "Tim",
                         LastName = "Robbins",
                         Age = 64,
-                        Gender = Gender.M,
+                        Gender = Gender.Male,
                         ImbLink = "https://www.imdb.com/name/nm0000209/",
                         FilmId = 1
 
@@ -76,7 +76,7 @@ namespace PSGettingStartedSWWeb.DataContext
                         FirstName = "Morgan",
                         LastName = "Freeman",
                         Age = 80,
-                        Gender = Gender.M,
+                        Gender = Gender.Male,
                         ImbLink = "https://www.imdb.com/name/nm0000151/",
                         FilmId = 1
                     },
@@ -86,7 +86,7 @@ namespace PSGettingStartedSWWeb.DataContext
                         FirstName = "Christian",
                         LastName = "Bale",
                         Age = 50,
-                        Gender = Gender.M,
+                        Gender = Gender.Male,
                         ImbLink = "https://www.imdb.com/name/nm0000288/",
                         FilmId = 2
                     },
@@ -96,7 +96,7 @@ namespace PSGettingStartedSWWeb.DataContext
                         FirstName = "Marlon",
                         LastName = "Brando",
                         Age = 93,
-                        Gender = Gender.M,
+                        Gender = Gender.Male,
                         ImbLink = "https://www.imdb.com/name/nm0000008/",
                         FilmId = 3
                     },
@@ -106,7 +106,7 @@ namespace PSGettingStartedSWWeb.DataContext
                         FirstName = "Al",
                         LastName = "Pacino",
                         Age = 83,
-                        Gender = Gender.M,
+                        Gender = Gender.Male,
                         ImbLink = "https://www.imdb.com/name/nm0000199/",
                         FilmId = 3
                     },
@@ -116,7 +116,7 @@ namespace PSGettingStartedSWWeb.DataContext
                         FirstName = "John",
                         LastName = "Travolta",
                         Age = 73,
-                        Gender = Gender.M,
+                        Gender = Gender.Male,
                         ImbLink = "https://www.imdb.com/name/nm0000237/",
                         FilmId = 4
                     },
@@ -126,7 +126,7 @@ namespace PSGettingStartedSWWeb.DataContext
                         FirstName = "Uma",
                         LastName = "Thurman",
                         Age = 71,
-                        Gender = Gender.F,
+                        Gender = Gender.Female,
                         ImbLink = "https://www.imdb.com/name/nm0000235/",
                         FilmId = 4
                     },
@@ -136,7 +136,7 @@ namespace PSGettingStartedSWWeb.DataContext
                         FirstName = "Samuel L.",
                         LastName = "Jackson",
                         Age = 84,
-                        Gender = Gender.M,
+                        Gender = Gender.Male,
                         ImbLink = "https://www.imdb.com/name/nm0000168/",
                         FilmId = 4
                     }

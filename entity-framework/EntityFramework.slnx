@@ -1,4 +1,5 @@
 <Solution>
-  <Project Path="PSGettingStartedSW/PSGettingStartedSW.csproj" />
-  <Project Path="PSGettingStartedSWWeb/PSGettingStartedSWWeb.csproj" Id="ac7c1f64-3ac3-471c-8456-de38ef86e8f0" />
+  <Project Path="PSGettingStartedSW/PSGettingStartedSW.Console.csproj" />
+  <Project Path="PSGettingStartedSWWeb.IntegrationTests/PSGettingStartedSW.Web.IntegrationTests.csproj" />
+  <Project Path="PSGettingStartedSWWeb/PSGettingStartedSW.Web.csproj" Id="ac7c1f64-3ac3-471c-8456-de38ef86e8f0" />
 </Solution>

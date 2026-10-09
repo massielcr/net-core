@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PSGettingStartedSWWeb.DataContext;
-using PSGettingStartedSWWeb.Entities;
-using PSGettingStartedSWWeb.Models;
+using PSGettingStartedSW.Web.DataContext;
+using PSGettingStartedSW.Web.Entities;
+using PSGettingStartedSW.Web.Models;
 using System.Diagnostics;
 
-namespace PSGettingStartedSWWeb.Controllers
+namespace PSGettingStartedSW.Web.Controllers
 {
     public class HomeController : Controller
     {

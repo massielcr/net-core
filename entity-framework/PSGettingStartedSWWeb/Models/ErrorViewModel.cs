@@ -1,4 +1,4 @@
-namespace PSGettingStartedSWWeb.Models
+namespace PSGettingStartedSW.Web.Models
 {
     public class ErrorViewModel
     {

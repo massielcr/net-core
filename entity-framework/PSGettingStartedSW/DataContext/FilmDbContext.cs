@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using PSGettingStartedSW.Entities;
-using PSGettingStartedSW.Enums;
+using PSGettingStartedSW.Console.Entities;
+using PSGettingStartedSW.Console.Enums;
 
-namespace PSGettingStartedSW.DataContext
+namespace PSGettingStartedSW.Console.DataContext
 {
     public class FilmDbContext : DbContext
     {

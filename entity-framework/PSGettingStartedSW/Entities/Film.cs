@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PSGettingStartedSW.Entities
+namespace PSGettingStartedSW.Console.Entities
 {
     public class Film
     {

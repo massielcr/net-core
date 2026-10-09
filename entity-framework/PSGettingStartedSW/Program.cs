@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PSGettingStartedSW.DataContext;
-using PSGettingStartedSW.Entities;
-using PSGettingStartedSW.Enums;
+using PSGettingStartedSW.Console.DataContext;
+using PSGettingStartedSW.Console.Entities;
+using PSGettingStartedSW.Console.Enums;
 using System.Reflection;
 
 Console.WriteLine("Starting App..");

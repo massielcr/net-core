@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using PSGettingStartedSWWeb.DataContext;
-using PSGettingStartedSWWeb.Entities;
+using PSGettingStartedSW.Web.DataContext;
+using PSGettingStartedSW.Web.Entities;
 
-namespace PSGettingStartedSWWeb.Controllers
+namespace PSGettingStartedSW.Web.Controllers
 {
     public static class ActorMinimalApi
     {

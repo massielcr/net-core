@@ -1,6 +1,6 @@
-﻿using PSGettingStartedSWWeb.Enums;
+﻿using PSGettingStartedSW.Web.Enums;
 
-namespace PSGettingStartedSWWeb.Entities
+namespace PSGettingStartedSW.Web.Entities
 {
     public class Actor
     {

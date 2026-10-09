@@ -1,8 +1,8 @@
-﻿namespace PSGettingStartedSWWeb.Enums
+﻿namespace PSGettingStartedSW.Web.Enums
 {
     public enum Gender
     {
-        F,
-        M
+        Female,
+        Male        
     }
 }

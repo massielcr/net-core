@@ -1,6 +1,6 @@
-﻿using PSGettingStartedSW.Enums;
+﻿using PSGettingStartedSW.Console.Enums;
 
-namespace PSGettingStartedSW.Entities
+namespace PSGettingStartedSW.Console.Entities
 {
     public class Actor
     {
