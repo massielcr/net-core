@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\PSGettingStartedSWWeb\PSGettingStartedSW.Web.csproj" />
+	<ProjectReference Include="..\PSGettingStartedSW.Web\PSGettingStartedSW.Web.csproj" />
   </ItemGroup>
 
 </Project>
