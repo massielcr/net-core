@@ -8,51 +8,32 @@ using Testcontainers.MsSql;
 namespace PSGettingStartedSW.Web.IntegrationTests
 {
     [TestFixture]
-    public abstract class IntegrationTestBase
-    {
-        private MsSqlContainer _msSqlContainer = null!;
-        private IServiceScope _scope = null!;
-
-        protected WebApplicationFactory<Program> Factory { get; private set; } = null!;
+    public abstract class BaseIntegrationTest
+    {        
         protected HttpClient Client { get; private set; } = null!;
         protected FilmDbContext DbContext { get; private set; } = null!;
-        
+
+
+        private readonly MsSqlContainer _msSqlContainer = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest").Build();
+        protected CustomWebApplicationFactory<Program> _factory { get; private set; } = null!;
+        private IServiceScope _scope = null!;        
+
 
         [OneTimeSetUp]
         public async Task OneTimeSetUpAsync()
         {
-            // 1. Initialize and start the SQL Server Testcontainer
-            _msSqlContainer = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest")
-                              .Build();
-
+            // 1. Asynchronously spin up the container safely
             await _msSqlContainer.StartAsync();
 
-            // 2. Build WebApplicationFactory, overriding EF Core to use the container
-            Factory = new WebApplicationFactory<Program>()
-                .WithWebHostBuilder(builder =>
-                {
-                    builder.ConfigureServices(services =>
-                    {
-                        var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<FilmDbContext>));
-                        if (descriptor != null)
-                        {
-                            services.Remove(descriptor);
-                        }
+            // 2. Instantiate your factory by passing the live connection string
+            _factory = new CustomWebApplicationFactory<Program>(_msSqlContainer.GetConnectionString());
 
-                        services.AddDbContext<FilmDbContext>(options =>
-                            options.UseSqlServer(_msSqlContainer.GetConnectionString())
-                        );
-                    });
-                });
+            Client = _factory.CreateClient();
 
-            // Create HTTP Client to hit the API endpoints
-            Client = Factory.CreateClient();
-
-            // Create a dedicated scope to allow tests to arrange seed data or assert directly
-            _scope = Factory.Services.CreateScope();
+            // 3. Set up the local test scope and run migrations
+            _scope = _factory.Services.CreateScope();
             DbContext = _scope.ServiceProvider.GetRequiredService<FilmDbContext>();
 
-            // Run database migrations once to set up tables
             await DbContext.Database.MigrateAsync();
         }
 
@@ -76,8 +57,9 @@ namespace PSGettingStartedSW.Web.IntegrationTests
         {
             _scope?.Dispose();
             Client?.Dispose();
-            await Factory.DisposeAsync();
+            await _factory.DisposeAsync();
             await _msSqlContainer.StopAsync();
+            await _msSqlContainer.DisposeAsync();
         }
     }
 }

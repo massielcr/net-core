@@ -5,7 +5,7 @@ using System.Net;
 namespace PSGettingStartedSW.Web.IntegrationTests.TestFixtures
 {
     [TestFixture]
-    public class HomeControllerTests : IntegrationTestBase
+    public class HomeControllerTests : BaseIntegrationTest
     {
         [Test]
         public async Task Index_WhenCalled_ReturnsSuccessAndRendersHtmlView()

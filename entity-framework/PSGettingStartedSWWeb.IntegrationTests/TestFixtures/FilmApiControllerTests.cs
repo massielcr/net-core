@@ -8,7 +8,7 @@ using System.Net.Http.Json;
 namespace PSGettingStartedSW.Web.IntegrationTests.TestFixtures
 {
     [TestFixture]
-    internal class FilmApiControllerTests : IntegrationTestBase
+    internal class FilmApiControllerTests : BaseIntegrationTest
     {
         [Test]
         public async Task GetFilms_WhenNoFilmsExist_ReturnsNotFound()

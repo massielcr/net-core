@@ -2,14 +2,13 @@
 using NUnit.Framework;
 using PSGettingStartedSW.Web.Entities;
 using PSGettingStartedSW.Web.Enums;
-using PSGettingStartedSW.Web.IntegrationTests;
 using System.Net;
 using System.Net.Http.Json;
 
 namespace PSGettingStartedSW.Web.IntegrationTests.TestFixtures
 {
     [TestFixture]
-    public class ActorMinimalApiTests : IntegrationTestBase
+    public class ActorMinimalApiTests : BaseIntegrationTest
     {
         [Test]
         public async Task GetActorsForFilm_WhenFilmDoesNotExist_ReturnsNotFound()
