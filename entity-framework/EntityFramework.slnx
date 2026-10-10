@@ -2,4 +2,5 @@
   <Project Path="PSGettingStartedSW.Console/PSGettingStartedSW.Console.csproj" />
   <Project Path="PSGettingStartedSW.Web.IntegrationTests/PSGettingStartedSW.Web.IntegrationTests.csproj" />
   <Project Path="PSGettingStartedSW.Web/PSGettingStartedSW.Web.csproj" />
+  <Project Path="PSModelingRelationshipsFS.Web/PSModelingRelationshipsFS.Web.csproj" Id="35b83c02-d8de-436f-9430-2be65600a753" />
 </Solution>
