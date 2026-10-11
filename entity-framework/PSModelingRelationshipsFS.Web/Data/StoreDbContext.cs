@@ -19,6 +19,7 @@ namespace PSModelingRelationshipsFS.Web.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration<Customer>(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration<CustomerProfile>(new CustomerProfileConfiguration());
             modelBuilder.ApplyConfiguration<Product>(new ProductConfiguration());
             modelBuilder.ApplyConfiguration<Order>(new OrderConfiguration());
             modelBuilder.ApplyConfiguration<OrderLine>(new OrderLineConfiguration());

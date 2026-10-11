@@ -8,7 +8,10 @@
         public Address ShippingAddress { get; set; } = new();
         public Address? BillingAddress { get; set; }
 
-        //one-to-many
+        // 1:1
+        public CustomerProfile Profile { get; set; } = null!;
+
+        // 1:many
         public List<Order> Orders { get; set; } = [];
     }
 }

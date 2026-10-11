@@ -29,6 +29,11 @@ namespace PSModelingRelationshipsFS.Web.Data.Configurations
                 AddressConfiguration.ConfigureAddress(a, "Bill", false);
             });
 
+            builder.HasMany(c => c.Orders)
+                   .WithOne(o => o.Customer)
+                   .HasForeignKey(o => o.CustomerId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasIndex(c => c.Email).IsUnique();
         }
     }
