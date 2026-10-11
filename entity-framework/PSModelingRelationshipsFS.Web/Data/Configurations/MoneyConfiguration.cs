@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PSModelingRelationshipsFS.Web.Entities;
 
-namespace PSModelingRelationshipsFS.Web.DataConfigurations
+namespace PSModelingRelationshipsFS.Web.Data.Configurations
 {
     public static class MoneyConfiguration
     {

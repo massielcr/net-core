@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PSModelingRelationshipsFS.Web.DataConfigurations;
+using PSModelingRelationshipsFS.Web.Data.Configurations;
 using PSModelingRelationshipsFS.Web.Entities;
 
 namespace PSModelingRelationshipsFS.Web.Data
