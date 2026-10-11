@@ -18,6 +18,17 @@ namespace PSModelingRelationshipsFS.Web.DataConfigurations
                    .HasMaxLength(320)
                    .IsUnicode(false);
 
+            builder.ComplexProperty(c => c.ShippingAddress, a =>
+                    AddressConfiguration.ConfigureAddress(a, "Ship", true));
+
+            builder.ComplexProperty(c => c.BillingAddress, a =>
+            {
+                a.HasDiscriminator<bool>("BillingPresent")
+                 .HasValue(true);
+
+                AddressConfiguration.ConfigureAddress(a, "Bill", false);
+            });
+
             builder.HasIndex(c => c.Email).IsUnique();
         }
     }

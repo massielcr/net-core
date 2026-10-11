@@ -5,6 +5,8 @@
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
+        public Address ShippingAddress { get; set; } = new();
+        public Address? BillingAddress { get; set; }
 
         //one-to-many
         public List<Order> Orders { get; set; } = [];

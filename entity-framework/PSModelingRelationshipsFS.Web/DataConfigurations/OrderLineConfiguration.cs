@@ -10,8 +10,8 @@ namespace PSModelingRelationshipsFS.Web.DataConfigurations
         {
             builder.HasKey(ol => new { ol.OrderId, ol.ProductId });
 
-            builder.Property(ol => ol.UnitPrice)
-                   .HasPrecision(18, 2);
+            builder.ComplexProperty(ol => ol.UnitPrice, up => 
+                    MoneyConfiguration.ConfigureMoney(up, "UnitPrice", "UnitPriceCurrency"));
 
             builder.HasOne(ol => ol.Order)
                    .WithMany(o => o.Lines)

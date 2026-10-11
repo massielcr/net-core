@@ -27,8 +27,8 @@ namespace PSModelingRelationshipsFS.Web.DataConfigurations
                    .HasMaxLength(200)
                    .IsUnicode(false);
 
-            builder.Property(p => p.Price)
-                   .HasPrecision(18, 2);
+            builder.ComplexProperty(p => p.Price, m => 
+                    MoneyConfiguration.ConfigureMoney(m, "Price", "PriceCurrency"));
 
             builder.ToTable(t => t.HasCheckConstraint(
                     "CK_Products_Price_NonNegative",
