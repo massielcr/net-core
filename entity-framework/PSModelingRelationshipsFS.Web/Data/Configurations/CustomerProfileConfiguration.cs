@@ -11,6 +11,10 @@ namespace PSModelingRelationshipsFS.Web.Data.Configurations
             builder.Property<int>("CustomerId");
             builder.HasKey("CustomerId");
 
+            builder.Property(cp => cp.LoyaltyTier)
+                   .HasMaxLength(100)
+                   .IsRequired(false);
+
             builder.HasOne(cp => cp.Customer)
                    .WithOne(c => c.Profile)
                    .HasForeignKey<CustomerProfile>("CustomerId")

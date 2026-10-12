@@ -17,12 +17,16 @@ namespace PSModelingRelationshipsFS.Web.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            
             modelBuilder.ApplyConfiguration<Customer>(new CustomerConfiguration());
-            modelBuilder.ApplyConfiguration<CustomerProfile>(new CustomerProfileConfiguration());
-            modelBuilder.ApplyConfiguration<Product>(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration<CustomerProfile>(new CustomerProfileConfiguration());            
             modelBuilder.ApplyConfiguration<Order>(new OrderConfiguration());
             modelBuilder.ApplyConfiguration<OrderLine>(new OrderLineConfiguration());
+            modelBuilder.ApplyConfiguration<Product>(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration<ProductSuplier>(new ProductSuplierConfiguration());
+            modelBuilder.ApplyConfiguration<SalesAgent>(new SalesAgentConfiguration());
+            modelBuilder.ApplyConfiguration<Suplier>(new SuplierConfiguration());
+            modelBuilder.ApplyConfiguration<Tag>(new TagConfiguration());
         }
     }
 }

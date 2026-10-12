@@ -11,6 +11,13 @@ namespace PSModelingRelationshipsFS.Web.Data.Configurations
             builder.ComplexProperty(o => o.ShipTo, st => 
                     AddressConfiguration.ConfigureAddress(st, "ShipTo", true));
 
+            builder.HasMany(o => o.Lines)
+                   .WithOne(l => l.Order)
+                   .HasForeignKey(l => l.OrderId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Property<int?>("SalesAgentId");
+
             builder.HasOne(o => o.SalesAgent)
                    .WithMany(sa => sa.Orders)
                    .HasForeignKey("SalesAgentId")

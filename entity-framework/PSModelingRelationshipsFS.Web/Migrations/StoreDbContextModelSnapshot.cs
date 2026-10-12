@@ -125,8 +125,8 @@ namespace PSModelingRelationshipsFS.Web.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LoyaltyTier")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("CustomerId");
 
@@ -281,6 +281,31 @@ namespace PSModelingRelationshipsFS.Web.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.ProductSuplier", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SuplierId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ContractPrice")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsPreferred")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LeadTimeDays")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "SuplierId");
+
+                    b.HasIndex("SuplierId");
+
+                    b.ToTable("ProductSupliers", (string)null);
+                });
+
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.SalesAgent", b =>
                 {
                     b.Property<int>("Id")
@@ -291,11 +316,64 @@ namespace PSModelingRelationshipsFS.Web.Migrations
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(200)");
 
                     b.HasKey("Id");
 
                     b.ToTable("SalesAgent");
+                });
+
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.Suplier", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Suplier");
+                });
+
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tag");
+                });
+
+            modelBuilder.Entity("ProductTag", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ProductTags", (string)null);
                 });
 
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.CustomerProfile", b =>
@@ -346,6 +424,40 @@ namespace PSModelingRelationshipsFS.Web.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.ProductSuplier", b =>
+                {
+                    b.HasOne("PSModelingRelationshipsFS.Web.Entities.Product", "Product")
+                        .WithMany("Supliers")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PSModelingRelationshipsFS.Web.Entities.Suplier", "Suplier")
+                        .WithMany("Products")
+                        .HasForeignKey("SuplierId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Suplier");
+                });
+
+            modelBuilder.Entity("ProductTag", b =>
+                {
+                    b.HasOne("PSModelingRelationshipsFS.Web.Entities.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PSModelingRelationshipsFS.Web.Entities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.Customer", b =>
                 {
                     b.Navigation("Orders");
@@ -359,9 +471,19 @@ namespace PSModelingRelationshipsFS.Web.Migrations
                     b.Navigation("Lines");
                 });
 
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.Product", b =>
+                {
+                    b.Navigation("Supliers");
+                });
+
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.SalesAgent", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.Suplier", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

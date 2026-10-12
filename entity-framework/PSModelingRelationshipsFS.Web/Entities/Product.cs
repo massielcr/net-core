@@ -6,5 +6,11 @@
         public string Sku { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public required Money Price { get; set; }
+
+        // skip many:many
+        public List<Tag> Tags { get; set; } = [];
+
+        // many:many
+        public List<ProductSuplier> Supliers { get; set; } = [];
     }
 }
