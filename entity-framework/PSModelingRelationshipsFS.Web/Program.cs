@@ -9,7 +9,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<StoreDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("StoreDb"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("StoreDb"),
+                         sql => sql.UseCompatibilityLevel(170));
 });
 
 builder.Services.AddScoped<StoreDbContext>();

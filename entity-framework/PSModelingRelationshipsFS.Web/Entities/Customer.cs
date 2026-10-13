@@ -11,6 +11,9 @@
         // 1:1
         public CustomerProfile Profile { get; set; } = null!;
 
+        // json
+        public CustomerPreference Preferences { get; set; } = new();
+
         // 1:many
         public List<Order> Orders { get; set; } = [];
     }

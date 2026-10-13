@@ -29,6 +29,8 @@ namespace PSModelingRelationshipsFS.Web.Data.Configurations
                 AddressConfiguration.ConfigureAddress(a, "Bill", false);
             });
 
+            builder.ComplexProperty(c => c.Preferences, p => p.ToJson());
+
             builder.HasMany(c => c.Orders)
                    .WithOne(o => o.Customer)
                    .HasForeignKey(o => o.CustomerId)

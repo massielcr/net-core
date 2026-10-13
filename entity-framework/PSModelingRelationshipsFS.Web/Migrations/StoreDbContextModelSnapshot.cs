@@ -75,6 +75,40 @@ namespace PSModelingRelationshipsFS.Web.Migrations
                             b1.HasDiscriminator<bool>("BillingPresent").HasValue(true);
                         });
 
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Preferences", "PSModelingRelationshipsFS.Web.Entities.Customer.Preferences#CustomerPreference", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.PrimitiveCollection<string>("FavoriteCategories")
+                                .IsRequired();
+
+                            b1.ComplexProperty(typeof(Dictionary<string, object>), "Notifications", "PSModelingRelationshipsFS.Web.Entities.Customer.Preferences#CustomerPreference.Notifications#NotificationPreferences", b2 =>
+                                {
+                                    b2.IsRequired();
+
+                                    b2.Property<bool>("EmailEnabled");
+
+                                    b2.Property<bool>("MarketingOptIn");
+
+                                    b2.Property<bool>("SmsEnabled");
+                                });
+
+                            b1.ComplexProperty(typeof(Dictionary<string, object>), "UI", "PSModelingRelationshipsFS.Web.Entities.Customer.Preferences#CustomerPreference.UI#UIPreferences", b2 =>
+                                {
+                                    b2.IsRequired();
+
+                                    b2.Property<string>("Language")
+                                        .IsRequired();
+
+                                    b2.Property<string>("Theme")
+                                        .IsRequired();
+                                });
+
+                            b1
+                                .ToJson("Preferences")
+                                .HasColumnType("json");
+                        });
+
                     b.ComplexProperty(typeof(Dictionary<string, object>), "ShippingAddress", "PSModelingRelationshipsFS.Web.Entities.Customer.ShippingAddress#Address", b1 =>
                         {
                             b1.IsRequired();
