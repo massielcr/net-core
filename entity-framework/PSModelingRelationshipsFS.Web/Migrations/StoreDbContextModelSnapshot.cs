@@ -130,7 +130,7 @@ namespace PSModelingRelationshipsFS.Web.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("CustomerProfile");
+                    b.ToTable("CustomerProfiles");
                 });
 
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.Order", b =>
@@ -243,6 +243,12 @@ namespace PSModelingRelationshipsFS.Web.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(200)");
 
+                    b.Property<string>("ProductKind")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)")
+                        .HasColumnName("ProductKind");
+
                     b.Property<string>("Sku")
                         .IsRequired()
                         .HasMaxLength(32)
@@ -279,6 +285,10 @@ namespace PSModelingRelationshipsFS.Web.Migrations
                         {
                             t.HasCheckConstraint("CK_Products_Price_NonNegative", "[Price] >= 0");
                         });
+
+                    b.HasDiscriminator<string>("ProductKind").HasValue("Product");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.ProductSuplier", b =>
@@ -322,7 +332,7 @@ namespace PSModelingRelationshipsFS.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SalesAgent");
+                    b.ToTable("SalesAgents");
                 });
 
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.Suplier", b =>
@@ -340,7 +350,7 @@ namespace PSModelingRelationshipsFS.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suplier");
+                    b.ToTable("Supliers");
                 });
 
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.Tag", b =>
@@ -358,7 +368,7 @@ namespace PSModelingRelationshipsFS.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tag");
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("ProductTag", b =>
@@ -374,6 +384,94 @@ namespace PSModelingRelationshipsFS.Web.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("ProductTags", (string)null);
+                });
+
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.DigitalProduct", b =>
+                {
+                    b.HasBaseType("PSModelingRelationshipsFS.Web.Entities.Product");
+
+                    b.Property<string>("DownloadUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("FileSizeBytes")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Manufacturer")
+                        .ValueGeneratedOnUpdateSometimes()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Manufacturer");
+
+                    b.ToTable(t =>
+                        {
+                            t.HasCheckConstraint("CK_Products_Price_NonNegative", "[Price] >= 0");
+                        });
+
+                    b.HasDiscriminator().HasValue("Digital");
+                });
+
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.PhysicalProduct", b =>
+                {
+                    b.HasBaseType("PSModelingRelationshipsFS.Web.Entities.Product");
+
+                    b.Property<string>("Manufacturer")
+                        .ValueGeneratedOnUpdateSometimes()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Manufacturer");
+
+                    b.Property<bool>("RequiresSignature")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("WeigthKg")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Dimensions", "PSModelingRelationshipsFS.Web.Entities.PhysicalProduct.Dimensions#Dimensions", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<decimal>("HeightCm")
+                                .HasPrecision(9, 2)
+                                .HasColumnType("decimal(9,2)")
+                                .HasColumnName("DimHeightCm");
+
+                            b1.Property<decimal>("LengthCm")
+                                .HasPrecision(9, 2)
+                                .HasColumnType("decimal(9,2)")
+                                .HasColumnName("DimLenghtCm");
+
+                            b1.Property<decimal>("WidthCm")
+                                .HasPrecision(9, 2)
+                                .HasColumnType("decimal(9,2)")
+                                .HasColumnName("DimWidthCm");
+                        });
+
+                    b.ToTable(t =>
+                        {
+                            t.HasCheckConstraint("CK_Products_Price_NonNegative", "[Price] >= 0");
+                        });
+
+                    b.HasDiscriminator().HasValue("Physical");
+                });
+
+            modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.SubscriptionProduct", b =>
+                {
+                    b.HasBaseType("PSModelingRelationshipsFS.Web.Entities.Product");
+
+                    b.Property<bool>("AutoRenews")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("BillingPeriodMonths")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly?>("TrialEndsOn")
+                        .HasColumnType("date");
+
+                    b.ToTable(t =>
+                        {
+                            t.HasCheckConstraint("CK_Products_Price_NonNegative", "[Price] >= 0");
+                        });
+
+                    b.HasDiscriminator().HasValue("Subscription");
                 });
 
             modelBuilder.Entity("PSModelingRelationshipsFS.Web.Entities.CustomerProfile", b =>

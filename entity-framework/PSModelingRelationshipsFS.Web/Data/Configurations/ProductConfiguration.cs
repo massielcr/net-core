@@ -8,11 +8,6 @@ namespace PSModelingRelationshipsFS.Web.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("Products");
-
-            builder.HasKey(p => p.Id)
-                   .HasName("PK_Products");
-
             builder.Property(p => p.Sku)
                    .HasColumnName("Sku")
                    .IsRequired()
@@ -25,12 +20,7 @@ namespace PSModelingRelationshipsFS.Web.Data.Configurations
                    .IsUnicode(false);
 
             builder.ComplexProperty(p => p.Price, m => 
-                    MoneyConfiguration.ConfigureMoney(m, "Price", "PriceCurrency"));
-
-            builder.ToTable(t => t.HasCheckConstraint(
-                    "CK_Products_Price_NonNegative",
-                    "[Price] >= 0"
-                ));
+                    MoneyConfiguration.ConfigureMoney(m, "Price", "PriceCurrency"));            
 
             builder.HasIndex(p => p.Sku)
                    .HasDatabaseName("IX_Products_Sku");

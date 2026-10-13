@@ -1,6 +1,6 @@
 ﻿namespace PSModelingRelationshipsFS.Web.Entities
 {
-    public class Product
+    public abstract class Product
     {
         public int Id { get; set; }
         public string Sku { get; set; } = string.Empty;
