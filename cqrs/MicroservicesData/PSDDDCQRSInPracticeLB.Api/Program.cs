@@ -17,7 +17,6 @@ builder.Services.AddDbContext<StoreContext>(options =>
 });
 
 builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(p => p.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
@@ -28,6 +27,7 @@ builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IJobRoleRepository, JobRoleRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -36,7 +36,11 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "HRM API V1");
+        c.RoutePrefix = string.Empty; // swagger at root
+    });
 }
 
 app.UseHttpsRedirection();
