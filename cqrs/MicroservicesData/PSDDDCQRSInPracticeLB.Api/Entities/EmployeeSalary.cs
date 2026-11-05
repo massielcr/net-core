@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PSDDDCQRSInPracticeLB.Api.Entities.ValueObjects;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSDDDCQRSInPracticeLB.Api.Entities
@@ -19,11 +20,11 @@ namespace PSDDDCQRSInPracticeLB.Api.Entities
 
         public DateOnly From { get; set; }
 
-        public EmployeeSalary(int employeeId, decimal amount, string? currency, DateOnly from)
+        public EmployeeSalary(int employeeId, Money value, DateOnly from)
         {
             EmployeeId = employeeId;
-            Amount = amount;
-            Currency = currency;
+            Amount = value.Amount;
+            Currency = value.Currency;
             From = from;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PSDDDCQRSInPracticeLB.Api.Entities.ValueObjects;
 using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.UpdateEmployeePersonalInfo
@@ -21,10 +22,11 @@ namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.UpdateEmploye
                 throw new KeyNotFoundException($"Employee with id {request.EmployeeId} not found.");
             }
 
+            var emailAddress = EmailAddress.Create(request.PersonalInfoDto.Email);
             employee.UpdatePersonalInfo(
                 request.PersonalInfoDto.FirstName,
                 request.PersonalInfoDto.LastName,
-                request.PersonalInfoDto.Email,
+                emailAddress,
                 request.PersonalInfoDto.PhoneNumber,
                 request.PersonalInfoDto.DateOfBirth,
                 request.PersonalInfoDto.StartDate);

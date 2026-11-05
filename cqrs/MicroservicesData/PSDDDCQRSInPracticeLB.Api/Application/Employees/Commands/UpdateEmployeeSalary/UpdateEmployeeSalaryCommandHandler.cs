@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using PSDDDCQRSInPracticeLB.Api.Entities;
+using PSDDDCQRSInPracticeLB.Api.Entities.ValueObjects;
 using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.UpdateEmployeeSalary
@@ -28,7 +29,8 @@ namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.UpdateEmploye
             var today = DateOnly.FromDateTime(DateTime.UtcNow);
             var currentSalary = employee.Salary;
 
-            var updated = employee.UpdateSalary(request.salary.Amount, request.salary.Currency, today);
+            var salary = Money.Create(request.salary.Amount, request.salary.Currency);
+            var updated = employee.UpdateSalary(salary, today);
 
             await _repository.Update(employee);
 

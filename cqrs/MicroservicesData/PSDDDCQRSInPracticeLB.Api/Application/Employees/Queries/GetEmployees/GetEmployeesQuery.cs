@@ -3,5 +3,5 @@ using PSDDDCQRSInPracticeLB.Api.Dtos;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Queries.GetEmployees
 {
-    public record GetEmployeesQuery() : IRequest<List<EmployeeDto>>;
+    public sealed record GetEmployeesQuery() : IRequest<List<EmployeeDto>>;
 }

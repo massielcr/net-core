@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using PSDDDCQRSInPracticeLB.Api.Entities;
+using PSDDDCQRSInPracticeLB.Api.Entities.ValueObjects;
 using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.HireEmployee
@@ -33,10 +34,12 @@ namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.HireEmployee
                 throw new ArgumentException("Store assignments collection must be provided.");
             }
 
+            var emailAddress = EmailAddress.Create(request.Employee.Email);
+            var salary = Money.Create(request.Employee.Salary!.Amount, request.Employee.Salary!.Currency);
             var employee = new Employee(
                 request.Employee.FirstName,
                 request.Employee.LastName,
-                request.Employee.Email,
+                emailAddress,
                 request.Employee.PhoneNumber,
                 request.Employee.DateOfBirth,
                 request.Employee.StartDate,
@@ -45,8 +48,7 @@ namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.HireEmployee
                 request.Employee.Address!.City,
                 request.Employee.Address!.State,
                 request.Employee.Address!.Country,
-                request.Employee.Salary!.Amount,
-                request.Employee.Salary!.Currency);
+                salary);
 
             if (request.Employee.StoreAssignments != null)
             {

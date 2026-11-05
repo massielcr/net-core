@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PSDDDCQRSInPracticeLB.Api.Entities.ValueObjects;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSDDDCQRSInPracticeLB.Api.Entities
@@ -23,8 +24,8 @@ namespace PSDDDCQRSInPracticeLB.Api.Entities
 
         public Employee() { }
 
-        public Employee(string firstName, string lastName, string email, string phoneNumber, DateOnly dateOfBirth, DateOnly startDate, 
-                        string street, string postalCode, string city, string state, string country, decimal amount, string currency)
+        public Employee(string firstName, string lastName, EmailAddress email, string phoneNumber, DateOnly dateOfBirth, DateOnly startDate, 
+                        string street, string postalCode, string city, string state, string country, Money salary)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -33,7 +34,7 @@ namespace PSDDDCQRSInPracticeLB.Api.Entities
             DateOfBirth = dateOfBirth;
             StartDate = startDate;
             Address = new Address(street, postalCode, city, state, country);
-            Salary = new EmployeeSalary(Id, amount, currency, DateOnly.FromDateTime(DateTime.UtcNow));
+            Salary = new EmployeeSalary(Id, salary, DateOnly.FromDateTime(DateTime.UtcNow));
         }
 
         internal void UpdatePersonalInfo(string firstName, string lastName, string email, string phoneNumber, DateOnly dateOfBirth, DateOnly startDate)
@@ -108,24 +109,28 @@ namespace PSDDDCQRSInPracticeLB.Api.Entities
             Salary = null;
         }
 
-        internal bool UpdateSalary(decimal newAmount, string? currency, DateOnly from)
+        internal bool UpdateSalary(Money salary, DateOnly from)
         {
-            currency = string.IsNullOrWhiteSpace(currency) ? "EUR" : currency;
+            salary.Currency = string.IsNullOrWhiteSpace(salary.Currency) ? "EUR" : salary.Currency;
 
             if (Salary is null)
             {
-                Salary = new EmployeeSalary(Id, newAmount, currency, from);
+                Salary = new EmployeeSalary(Id, salary, from);
             }
             else
             {
-                if (Salary.Amount == newAmount &&
-                    string.Equals(Salary.Currency, currency, StringComparison.OrdinalIgnoreCase))
+                if (salary.Equals(Money.Create(Salary.Amount, Salary.Currency)))
                 {
                     return false;
                 }
 
-                Salary.Amount = newAmount;
-                Salary.Currency = currency;
+                if (salary.Amount < Salary.Amount)
+                {
+                    throw new InvalidOperationException("New salary must be greater than the current salary.");
+                }
+
+                Salary.Amount = salary.Amount;
+                Salary.Currency = salary.Currency;
                 Salary.From = from;
             }
 
