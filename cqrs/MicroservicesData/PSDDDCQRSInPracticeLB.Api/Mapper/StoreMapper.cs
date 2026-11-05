@@ -1,4 +1,4 @@
-﻿using PSDDDCQRSInPracticeLB.Api.Dtos;
+﻿using PSDDDCQRSInPracticeLB.Api.Application.Stores.Queries.GetStores;
 using PSDDDCQRSInPracticeLB.Api.Entities;
 
 namespace PSDDDCQRSInPracticeLB.Api.Mapper

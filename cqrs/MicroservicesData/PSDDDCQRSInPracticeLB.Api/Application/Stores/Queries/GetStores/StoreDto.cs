@@ -1,4 +1,4 @@
-﻿namespace PSDDDCQRSInPracticeLB.Api.Dtos
+﻿namespace PSDDDCQRSInPracticeLB.Api.Application.Stores.Queries.GetStores
 {
     public class StoreDto
     {

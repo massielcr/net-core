@@ -18,11 +18,11 @@ namespace PSDDDCQRSInPracticeLB.Api.Repositories
         {
             return await _context.Employees
                         .Include(e => e.Address)
-                        .Include(e => e.StoreAssignments.Where(sa => sa.To == null))
+                        .Include(e => e.StoreAssignments)
                         .ThenInclude(sa => sa.Store)
-                        .Include(e => e.StoreAssignments.Where(sa => sa.To == null))
+                        .Include(e => e.StoreAssignments)
                         .ThenInclude(sa => sa.JobRole)
-                        .Include(e => e.Salaries.Where(s => s.To == null))
+                        .Include(e => e.Salary)
                         .OrderBy(s => s.FirstName)
                         .ThenBy(s => s.LastName)
                         .ToListAsync();
@@ -32,11 +32,11 @@ namespace PSDDDCQRSInPracticeLB.Api.Repositories
         {
             return await _context.Employees
                         .Include(e => e.Address)
-                        .Include(e => e.StoreAssignments.Where(sa => sa.To == null))
+                        .Include(e => e.StoreAssignments)
                         .ThenInclude(sa => sa.Store)
-                        .Include(e => e.StoreAssignments.Where(sa => sa.To == null))
+                        .Include(e => e.StoreAssignments)
                         .ThenInclude(sa => sa.JobRole)
-                        .Include(e => e.Salaries.Where(s => s.To == null))
+                        .Include(e => e.Salary)
                         .OrderBy(s => s.FirstName)
                         .ThenBy(s => s.LastName)
                         .FirstOrDefaultAsync(e => e.Id == id);
@@ -52,27 +52,6 @@ namespace PSDDDCQRSInPracticeLB.Api.Repositories
         public async Task Update(Employee employee)
         {
             await _context.SaveChangesAsync();
-        }
-
-        public Task Delete(Employee employee)
-        {
-            employee.IsDeleted = true;
-
-            var today = DateOnly.FromDateTime(DateTime.UtcNow);
-            employee.EndDate = today;
-
-            foreach(var salary in employee.Salaries.Where(s => s.To == null))
-            {
-                salary.To = today;
-            }
-
-            foreach(var storeAssignment in employee.StoreAssignments.Where(s => s.To == null))
-            {
-                storeAssignment.To = today;
-            }
-
-            _context.Employees.Update(employee);
-            return _context.SaveChangesAsync();
         }        
     }
 }

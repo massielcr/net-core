@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PSDDDCQRSInPracticeLB.Api.Dtos;
-using PSDDDCQRSInPracticeLB.Api.Mapper;
-using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using PSDDDCQRSInPracticeLB.Api.Application.JobRoles.Queries.GetJobRoles;
 
 namespace PSDDDCQRSInPracticeLB.Api.Controllers
 {
@@ -9,19 +8,17 @@ namespace PSDDDCQRSInPracticeLB.Api.Controllers
     [ApiController]
     public class JobRolesController : ControllerBase
     {
-        private readonly IJobRoleRepository _jobRoleRepository;
+        private readonly IMediator _mediator;
 
-        public JobRolesController(IJobRoleRepository jobRoleRepository)
+        public JobRolesController(IMediator mediator)
         {
-            _jobRoleRepository = jobRoleRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<List<JobRoleDto>> GetAll()
         {
-            var jobRoles = await _jobRoleRepository.GetAll();
-
-            return jobRoles.Select(JobRoleMapper.ToDto).ToList();
+            return await _mediator.Send(new GetJobRolesQuery());
         }
     }
 }

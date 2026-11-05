@@ -15,10 +15,16 @@ namespace PSDDDCQRSInPracticeLB.Api.Entities
 
         public decimal Amount { get; set; }
 
-        public string Currency { get; set; } = string.Empty;
+        public string? Currency { get; set; } = string.Empty;
 
         public DateOnly From { get; set; }
 
-        public DateOnly? To { get; set; }
+        public EmployeeSalary(int employeeId, decimal amount, string? currency, DateOnly from)
+        {
+            EmployeeId = employeeId;
+            Amount = amount;
+            Currency = currency;
+            From = from;
+        }
     }
 }

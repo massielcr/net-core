@@ -1,4 +1,4 @@
-﻿using PSDDDCQRSInPracticeLB.Api.Dtos;
+﻿using PSDDDCQRSInPracticeLB.Api.Application.JobRoles.Queries.GetJobRoles;
 using PSDDDCQRSInPracticeLB.Api.Entities;
 
 namespace PSDDDCQRSInPracticeLB.Api.Mapper

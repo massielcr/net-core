@@ -88,9 +88,6 @@ namespace PSDDDCQRSInPracticeLB.Api.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("JobRoleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -108,12 +105,38 @@ namespace PSDDDCQRSInPracticeLB.Api.Migrations
                         .IsUnique()
                         .HasFilter("[AddressId] IS NOT NULL");
 
-                    b.HasIndex("JobRoleId");
-
                     b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("PSDDDCQRSInPracticeLB.Api.Entities.EmployeeSalary", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("From")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
+                    b.ToTable("EmployeeSalaries");
+                });
+
+            modelBuilder.Entity("PSDDDCQRSInPracticeLB.Api.Entities.EmployeeSalaryHistory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,14 +157,12 @@ namespace PSDDDCQRSInPracticeLB.Api.Migrations
                     b.Property<DateOnly>("From")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly?>("To")
+                    b.Property<DateOnly>("To")
                         .HasColumnType("date");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("EmployeeSalaries");
+                    b.ToTable("EmployeeSalaryHistories");
                 });
 
             modelBuilder.Entity("PSDDDCQRSInPracticeLB.Api.Entities.JobRole", b =>
@@ -239,9 +260,6 @@ namespace PSDDDCQRSInPracticeLB.Api.Migrations
                     b.Property<int>("StoreId")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly?>("To")
-                        .HasColumnType("date");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
@@ -253,6 +271,34 @@ namespace PSDDDCQRSInPracticeLB.Api.Migrations
                     b.ToTable("StoreAssignments");
                 });
 
+            modelBuilder.Entity("PSDDDCQRSInPracticeLB.Api.Entities.StoreAssignmentHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("From")
+                        .HasColumnType("date");
+
+                    b.Property<int>("JobRoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("To")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreAssignmentHistories");
+                });
+
             modelBuilder.Entity("PSDDDCQRSInPracticeLB.Api.Entities.Employee", b =>
                 {
                     b.HasOne("PSDDDCQRSInPracticeLB.Api.Entities.Address", "Address")
@@ -260,20 +306,14 @@ namespace PSDDDCQRSInPracticeLB.Api.Migrations
                         .HasForeignKey("PSDDDCQRSInPracticeLB.Api.Entities.Employee", "AddressId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("PSDDDCQRSInPracticeLB.Api.Entities.JobRole", "JobRole")
-                        .WithMany()
-                        .HasForeignKey("JobRoleId");
-
                     b.Navigation("Address");
-
-                    b.Navigation("JobRole");
                 });
 
             modelBuilder.Entity("PSDDDCQRSInPracticeLB.Api.Entities.EmployeeSalary", b =>
                 {
                     b.HasOne("PSDDDCQRSInPracticeLB.Api.Entities.Employee", "Employee")
-                        .WithMany("Salaries")
-                        .HasForeignKey("EmployeeId")
+                        .WithOne("Salary")
+                        .HasForeignKey("PSDDDCQRSInPracticeLB.Api.Entities.EmployeeSalary", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -309,7 +349,7 @@ namespace PSDDDCQRSInPracticeLB.Api.Migrations
 
             modelBuilder.Entity("PSDDDCQRSInPracticeLB.Api.Entities.Employee", b =>
                 {
-                    b.Navigation("Salaries");
+                    b.Navigation("Salary");
 
                     b.Navigation("StoreAssignments");
                 });

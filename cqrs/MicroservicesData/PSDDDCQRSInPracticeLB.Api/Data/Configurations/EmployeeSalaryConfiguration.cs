@@ -11,8 +11,8 @@ namespace PSDDDCQRSInPracticeLB.Api.Data.Configurations
             builder.HasKey(es => es.Id);
 
             builder.HasOne(es => es.Employee)
-                   .WithMany(e => e.Salaries)
-                   .HasForeignKey(es => es.EmployeeId)
+                   .WithOne(e => e.Salary)
+                   .HasForeignKey<EmployeeSalary>(es => es.EmployeeId)
                    .IsRequired();
 
         }

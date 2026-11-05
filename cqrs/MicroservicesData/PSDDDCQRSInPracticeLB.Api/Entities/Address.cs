@@ -13,5 +13,14 @@ namespace PSDDDCQRSInPracticeLB.Api.Entities
         public string State { get; set; } = string.Empty;
         public string PostalCode { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
+
+        public Address(string street, string postalCode, string city, string state, string country)
+        {
+            Street = street;
+            PostalCode = postalCode;
+            City = city;
+            State = state;
+            Country = country;
+        }
     }
 }

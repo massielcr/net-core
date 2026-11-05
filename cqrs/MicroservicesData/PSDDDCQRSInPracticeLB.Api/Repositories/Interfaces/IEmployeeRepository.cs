@@ -8,6 +8,5 @@ namespace PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces
         Task<Employee?> GetById(int id);
         Task<Employee> Create(Employee employee);
         Task Update(Employee employee);
-        Task Delete(Employee employee);
     }
 }

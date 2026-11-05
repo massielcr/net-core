@@ -1,4 +1,4 @@
-﻿namespace PSDDDCQRSInPracticeLB.Api.Dtos
+﻿namespace PSDDDCQRSInPracticeLB.Api.Application.JobRoles.Queries.GetJobRoles
 {
     public class JobRoleDto
     {

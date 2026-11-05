@@ -1,4 +1,7 @@
-﻿namespace PSDDDCQRSInPracticeLB.Api.Dtos
+﻿using PSDDDCQRSInPracticeLB.Api.Application.JobRoles.Queries.GetJobRoles;
+using PSDDDCQRSInPracticeLB.Api.Application.Stores.Queries.GetStores;
+
+namespace PSDDDCQRSInPracticeLB.Api.Dtos
 {
     public class StoreAssignmentDto
     {

@@ -23,6 +23,12 @@ namespace PSDDDCQRSInPracticeLB.Api.Entities
 
         public DateOnly From { get; set; }
 
-        public DateOnly? To { get; set; }
+        public StoreAssignment(int employeeId, int storeId, int jobRoleId, DateOnly from)
+        {
+            EmployeeId = employeeId;
+            StoreId = storeId;
+            JobRoleId = jobRoleId;
+            From = from;
+        }
     }
 }

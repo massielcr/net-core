@@ -8,10 +8,12 @@ namespace PSDDDCQRSInPracticeLB.Api.Data
     {
         public DbSet<Address> Addresses => Set<Address>();
         public DbSet<Employee> Employees => Set<Employee>();
-        public DbSet<EmployeeSalary> EmployeeSalaries => Set<EmployeeSalary>();
+        public DbSet<EmployeeSalary> EmployeeSalaries => Set<EmployeeSalary>();        
         public DbSet<JobRole> JobRoles => Set<JobRole>();
         public DbSet<Store> Stores => Set<Store>();                     
         public DbSet<StoreAssignment> StoreAssignments => Set<StoreAssignment>();
+        public DbSet<EmployeeSalaryHistory> EmployeeSalaryHistories => Set<EmployeeSalaryHistory>();
+        public DbSet<StoreAssignmentHistory> StoreAssignmentHistories => Set<StoreAssignmentHistory>();
 
         public StoreContext(DbContextOptions options) : base(options)
         {

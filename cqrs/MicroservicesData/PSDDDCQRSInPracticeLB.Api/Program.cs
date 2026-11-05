@@ -5,6 +5,8 @@ using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
 builder.Services.AddControllers();
 
 // Add services to the container.
@@ -26,6 +28,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IJobRoleRepository, JobRoleRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeSalaryHistoryRepository, EmployeeSalaryHistoryRepository>();
+builder.Services.AddScoped<IEmployeeStoreAssignmentHistoryRepository, EmployeeStoreAssignmentHistoryRepository>();
 
 builder.Services.AddSwaggerGen();
 

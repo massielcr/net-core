@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PSDDDCQRSInPracticeLB.Api.Dtos;
-using PSDDDCQRSInPracticeLB.Api.Mapper;
-using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using PSDDDCQRSInPracticeLB.Api.Application.Stores.Queries.GetStores;
 
 namespace PSDDDCQRSInPracticeLB.Api.Controllers
 {
@@ -9,19 +8,17 @@ namespace PSDDDCQRSInPracticeLB.Api.Controllers
     [ApiController]
     public class StoresController : ControllerBase
     {
-        private readonly IStoreRepository _storeRepository;
+        private readonly IMediator _mediator;
 
-        public StoresController(IStoreRepository storeRepository)
+        public StoresController(IMediator mediator)
         {
-            _storeRepository = storeRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<List<StoreDto>> GetStores()
+        public async Task<List<StoreDto>> GetAll()
         {
-            var stores = await _storeRepository.GetAll();
-
-            return stores.Select(StoreMapper.ToDto).ToList();
+            return await _mediator.Send(new GetStoresQuery());
         }
     }
 }
