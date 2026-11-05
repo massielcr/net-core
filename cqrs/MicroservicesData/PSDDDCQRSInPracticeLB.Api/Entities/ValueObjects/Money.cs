@@ -1,6 +1,4 @@
-﻿using Microsoft.Identity.Client.NativeInterop;
-
-namespace PSDDDCQRSInPracticeLB.Api.Entities.ValueObjects
+﻿namespace PSDDDCQRSInPracticeLB.Api.Entities.ValueObjects
 {
     public class Money : ValueObject
     {

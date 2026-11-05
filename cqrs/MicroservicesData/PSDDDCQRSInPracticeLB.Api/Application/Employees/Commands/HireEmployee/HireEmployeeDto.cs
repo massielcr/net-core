@@ -1,6 +1,4 @@
-﻿using PSDDDCQRSInPracticeLB.Api.Dtos;
-
-namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.HireEmployee
+﻿namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.HireEmployee
 {
     public class HireEmployeeDto
     {

@@ -14,6 +14,11 @@ namespace PSDDDCQRSInPracticeLB.Api.Repositories
             _context = context;
         }
 
+        public async Task<bool> ExistById(int jobRoleId)
+        {
+            return await _context.JobRoles.AnyAsync(s => s.Id == jobRoleId);
+        }
+
         public async Task<List<JobRole>> GetAll()
         {
             return await _context.JobRoles.OrderBy(s => s.Name).ToListAsync();

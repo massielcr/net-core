@@ -1,6 +1,6 @@
-﻿using MediatR;
+﻿using PSDDDCQRSInPracticeLB.Api.Application.Common.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Stores.Queries.GetStores
 {
-    public record GetStoresQuery() : IRequest<List<StoreDto>>;
+    public record GetStoresQuery() : IQuery<List<StoreDto>>;
 }

@@ -4,6 +4,7 @@ namespace PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces
 {
     public interface IStoreRepository
     {
-        Task<List<Store>> GetAll();
+        Task<bool> ExistsById(int storeId);
+        Task <List<Store>> GetAll();
     }
 }
