@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="PSCleanArchitectureGC.Application/PSCleanArchitectureGC.Application.csproj" Id="a1f0b75b-0c23-4bc5-a8c2-d8a6d28df2b8" />
+  <Project Path="PSCleanArchitectureGC.Domain/PSCleanArchitectureGC.Domain.csproj" Id="d3fe2a04-49d7-4b88-9b9b-fcf2e1855fdf" />
   <Project Path="PSDDDCQRSInPracticeLB.Api/PSDDDCQRSInPracticeLB.Api.csproj" />
 </Solution>
