@@ -5,7 +5,7 @@ using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.UpdateEmployeeSalary
 {
-    public class UpdateEmployeeSalaryCommandHandler : IRequestHandler<UpdateEmployeeSalaryCommand>
+    public sealed class UpdateEmployeeSalaryCommandHandler : IRequestHandler<UpdateEmployeeSalaryCommand>
     {
         private readonly IEmployeeRepository _repository;
         private readonly IEmployeeSalaryHistoryRepository _salaryHistoryRepository;

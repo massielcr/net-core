@@ -4,7 +4,7 @@ using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Stores.Queries.GetStores
 {
-    public class GetStoresQueryHandler : IRequestHandler<GetStoresQuery, List<StoreDto>>
+    public sealed class GetStoresQueryHandler : IRequestHandler<GetStoresQuery, List<StoreDto>>
     {
         private readonly IStoreRepository _repository;
 

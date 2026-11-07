@@ -4,7 +4,7 @@ using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.JobRoles.Queries.GetJobRoles
 {
-    public class GetJobRolesQueryHandler : IRequestHandler<GetJobRolesQuery, List<JobRoleDto>>
+    public sealed class GetJobRolesQueryHandler : IRequestHandler<GetJobRolesQuery, List<JobRoleDto>>
     {
         private readonly IJobRoleRepository _jobRoleRepository;
 

@@ -3,7 +3,7 @@ using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.AddEmployeeStoreAssignment
 {
-    public class AddEmployeeStoreAssignmentCommandHandler : IRequestHandler<AddEmployeeStoreAssignmentCommand>
+    public sealed class AddEmployeeStoreAssignmentCommandHandler : IRequestHandler<AddEmployeeStoreAssignmentCommand>
     {
         private readonly IEmployeeRepository _repository;
 

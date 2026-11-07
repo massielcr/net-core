@@ -5,7 +5,7 @@ using PSDDDCQRSInPracticeLB.Api.Repositories.Interfaces;
 
 namespace PSDDDCQRSInPracticeLB.Api.Application.Employees.Commands.HireEmployee
 {
-    public class HireEmployeeCommandHandler : IRequestHandler<HireEmployeeCommand, int>
+    public sealed class HireEmployeeCommandHandler : IRequestHandler<HireEmployeeCommand, int>
     {
         private readonly IEmployeeRepository _repository;
 
