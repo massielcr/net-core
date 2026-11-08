@@ -5,7 +5,6 @@ using PSCleanArchitectureGC.Application.Contracts.Persistence;
 using PSCleanArchitectureGC.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using PSCleanArchitectureGC.Application.Profiles;
 using PSCleanArchitectureGC.UnitTests.Mocks;
-using Xunit;
 
 namespace PSCleanArchitectureGC.UnitTests.Categories.Queries
 {
