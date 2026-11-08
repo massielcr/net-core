@@ -4,5 +4,6 @@
   <Project Path="PSCleanArchitectureGC.Domain/PSCleanArchitectureGC.Domain.csproj" Id="d3fe2a04-49d7-4b88-9b9b-fcf2e1855fdf" />
   <Project Path="PSCleanArchitectureGC.Infrastructure/PSCleanArchitectureGC.Infrastructure.csproj" Id="68ebf010-4b8e-42ed-8293-869e45ef7cee" />
   <Project Path="PSCleanArchitectureGC.Persistence/PSCleanArchitectureGC.Persistence.csproj" Id="e52ea812-e626-416b-9278-f4c082f6e7a8" />
+  <Project Path="PSCleanArchitectureGC.UnitTests/PSCleanArchitectureGC.UnitTests.csproj" Id="c810cc15-40fe-4bc1-9a25-56e196d3e246" />
   <Project Path="PSDDDCQRSInPracticeLB.Api/PSDDDCQRSInPracticeLB.Api.csproj" />
 </Solution>

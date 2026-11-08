@@ -25,8 +25,9 @@ namespace PSCleanArchitectureGC.Application.Profiles
             CreateMap<Event, UpdateEventCommand>().ReverseMap();
             CreateMap<Event, EventDetailVM>().ReverseMap();
             CreateMap<Event, EventListVM>().ReverseMap();
+            CreateMap<Event, CategoryEventDto>();
 
             CreateMap<Order, OrdersForMonthDto>();
-        }        
+        }
     }
 }

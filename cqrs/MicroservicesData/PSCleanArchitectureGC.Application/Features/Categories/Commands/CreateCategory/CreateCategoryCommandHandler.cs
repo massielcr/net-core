@@ -9,10 +9,10 @@ namespace PSCleanArchitectureGC.Application.Features.Categories.Commands.CreateC
 {
     public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CreateCategoryDto>
     {
-        private readonly IAsyncRepository<Category> _categoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
 
-        public CreateCategoryCommandHandler(IAsyncRepository<Category> categoryRepository, IMapper mapper)
+        public CreateCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
