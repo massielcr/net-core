@@ -26,7 +26,7 @@ namespace PSCleanArchitectureGC.UnitTests.Categories.Queries
         }
 
         [Fact]
-        public async Task GetCategoriesListWithEventsQuery_IncludeHistoryTrue_ReturnsHistoryOfListOfCategoryEventListVm()
+        public async Task GetCategoriesListWithEventsQuery_IncludeHistoryTrue_ReturnsHistoryAndFutureEvents()
         {
             GetCategoriesListWithEventsQueryHandler sut = new(_categoryRepository.Object, _mapper);
 
