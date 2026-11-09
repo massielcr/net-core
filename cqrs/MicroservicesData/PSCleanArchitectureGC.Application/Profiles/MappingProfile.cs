@@ -20,6 +20,7 @@ namespace PSCleanArchitectureGC.Application.Profiles
             CreateMap<Category, CategoryEventListVm>();
             CreateMap<Category, CreateCategoryCommand>();
             CreateMap<Category, CreateCategoryDto>();
+            CreateMap<Category, CategoryDto>();
 
             CreateMap<Event, CreateEventCommand>().ReverseMap();
             CreateMap<Event, UpdateEventCommand>().ReverseMap();
