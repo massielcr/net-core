@@ -45,8 +45,4 @@ finally
     await environment.CloseAsync();
 }
 
-
-
-
-
 Console.ReadLine();
