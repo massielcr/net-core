@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="HelloWorld/HelloWorldConsumer/HelloWorldConsumer.csproj" Id="98264f47-8545-421d-8762-6639e52131ca" />
+  <Project Path="HelloWorld/HelloWorldPublisher/HelloWorldPublisher.csproj" Id="f1d518af-740b-446c-a82c-3c0c5b66f780" />
+</Solution>

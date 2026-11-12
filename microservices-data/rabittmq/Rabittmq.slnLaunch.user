@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "HelloWorld\\HelloWorldPublisher\\HelloWorldPublisher.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "HelloWorld\\HelloWorldConsumer\\HelloWorldConsumer.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
